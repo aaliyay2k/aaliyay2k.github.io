@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aaliya Memon — Financial & Data Analyst</title>
+  <meta name="description" content="Financial statement analysis, health scoring, and business analytics. US CMA candidate based in Ahmedabad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,480;0,9..144,600;0,9..144,700;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #fff4ea;
+      --paper-2: #fde6dc;
+      --cream: #fffaf4;
+      --ink: #4a2c38;
+      --ink-soft: #7a5c66;
+      --gold: #e8b4c4;
+      --gold-deep: #c45b78;
+      --coral: #e07a94;
+      --wax: #d45b78;
+      --forest: #c45b78;
+      --rule: rgba(74, 44, 56, 0.14);
+      --shadow: 0 18px 50px rgba(196, 91, 120, 0.12);
+      --serif: "Fraunces", "Times New Roman", serif;
+      --sans: "Outfit", "Segoe UI", sans-serif;
+      --hand: "Caveat", cursive;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    #finlens, #method, #hire, #contact, #resume,
+    #method-finance, #method-numbers, #method-memo { scroll-margin-top: 88px; }
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 80; opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .skip { position: absolute; left: -999px; }
+    .skip:focus { left: 12px; top: 8px; z-index: 100; background: var(--cream); padding: 8px 12px; }
+
+    header {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(255, 244, 234, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .mini-seal {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #f4a3b6, var(--wax) 58%, #a83d5a);
+      color: var(--cream); display: grid; place-items: center;
+      font-family: var(--serif); font-size: 11px; font-weight: 700;
+      box-shadow: inset 0 -3px 8px rgba(0,0,0,.18), 0 3px 0 #8f3350;
+      transform: rotate(-8deg);
+    }
+    .brand b { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; }
+    .brand span span { display: block; font-size: 0.72rem; color: var(--ink-soft); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+    nav ul { display: flex; gap: 6px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
+    nav a { text-decoration: none; font-size: 0.92rem; padding: 8px 12px; border-radius: 999px; }
+    nav a:hover { background: rgba(224, 122, 148, 0.12); }
+    nav .resume-link { background: var(--ink); color: var(--cream); }
+    nav .resume-link:hover { background: #3a2230; }
+
+    .hero { padding: 56px 0 28px; position: relative; overflow: hidden; }
+    .clouds { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .cloud {
+      position: absolute; background: #fff; border-radius: 999px; opacity: 0.82;
+      pointer-events: auto; cursor: grab; touch-action: none; user-select: none;
+      will-change: transform, left, top;
+    }
+    .cloud.dragging { cursor: grabbing; animation: none !important; z-index: 3; }
+    .cloud::before, .cloud::after { content: ""; position: absolute; background: #fff; border-radius: 50%; pointer-events: none; }
+    .c-a { width: 150px; height: 44px; top: 8%; right: 4%; animation: float-a 16s ease-in-out infinite; }
+    .c-a::before { width: 60px; height: 60px; left: 24px; top: -32px; }
+    .c-a::after { width: 76px; height: 76px; left: 62px; top: -40px; }
+    .c-b { width: 120px; height: 36px; top: 28%; right: 22%; opacity: 0.7; animation: float-b 21s ease-in-out infinite; animation-delay: -6s; }
+    .c-b::before { width: 48px; height: 48px; left: 16px; top: -24px; }
+    .c-b::after { width: 58px; height: 58px; left: 48px; top: -30px; }
+    .c-c { width: 180px; height: 50px; top: 2%; left: 38%; animation: float-c 24s ease-in-out infinite; animation-delay: -10s; }
+    .c-c::before { width: 70px; height: 70px; left: 30px; top: -36px; }
+    .c-c::after { width: 88px; height: 88px; left: 78px; top: -46px; }
+    @keyframes float-a {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-56px, 18px); }
+      50% { transform: translate(-18px, -28px); }
+      75% { transform: translate(42px, 12px); }
+    }
+    @keyframes float-b {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(64px, -22px); }
+    }
+    @keyframes float-c {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(48px, 22px); }
+      66% { transform: translate(-36px, 10px); }
+    }
+    .hero > *:not(.clouds) { position: relative; z-index: 1; }
+    .kicker {
+      display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 22px;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 11vw, 7.4rem);
+      font-weight: 500; line-height: 0.88; letter-spacing: -0.035em; max-width: 12ch;
+    }
+    .role { margin-top: 22px; font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 1.85rem); font-weight: 500; font-style: italic; }
+    .lede { margin-top: 18px; max-width: 38rem; font-size: 1.12rem; color: var(--ink-soft); }
+    .aside { margin-top: 10px; font-family: var(--hand); font-size: 1.55rem; color: var(--coral); transform: rotate(-2deg); display: inline-block; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-size: 0.95rem; font-weight: 500; border: 1px solid transparent; }
+    .btn-ink { background: var(--ink); color: var(--cream); }
+    .btn-ink:hover { background: #3a2230; }
+    .btn-paper { background: var(--cream); border-color: var(--rule); box-shadow: var(--shadow); }
+    .btn-paper:hover { border-color: var(--gold-deep); }
+    button.btn { font: inherit; cursor: pointer; }
+    .quiet { font-size: 0.9rem; color: var(--ink-soft); }
+    .quiet a { text-underline-offset: 3px; }
+
+    .facts { margin-top: 42px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .facts article { padding: 18px 20px 18px 0; }
+    .facts article + article { border-left: 1px solid var(--rule); padding-left: 22px; }
+    .facts small { display: block; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.7rem; color: var(--ink-soft); margin-bottom: 6px; }
+    .facts p { font-family: var(--serif); font-size: 1.12rem; }
+
+    section { padding: 64px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 20px; align-items: flex-end; margin-bottom: 28px; }
+    .label { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); }
+    h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.03em; margin-top: 6px; }
+
+    .cv-sheet, .exhibit {
+      position: relative; background: var(--cream);
+      border: 1px solid rgba(74,44,56,.12); box-shadow: var(--shadow);
+    }
+    .cv-sheet { padding: 36px 40px 32px; }
+    .cv-clip { position: absolute; top: -14px; left: 36px; width: 54px; height: 22px; border-radius: 4px; background: linear-gradient(#f4b8c8, #d45b78); box-shadow: 0 4px 0 #a83d5a; }
+    .cv-top { display: grid; grid-template-columns: 1fr auto; gap: 16px; border-bottom: 2px solid var(--ink); padding-bottom: 16px; margin-bottom: 18px; }
+    .cv-top h3 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 600; }
+    .cv-top .sub { color: var(--ink-soft); margin-top: 4px; }
+    .cv-meta { text-align: right; font-size: 0.9rem; line-height: 1.7; }
+    .cv-meta a { text-decoration: none; border-bottom: 1px solid var(--coral); }
+    .cv-summary { font-family: var(--serif); font-size: 1.05rem; max-width: 58rem; }
+    .cv-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; margin-top: 8px; }
+    .cv-block h4 { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); border-bottom: 1px solid var(--rule); padding-bottom: 6px; margin: 18px 0 10px; font-weight: 600; }
+    .cv-item + .cv-item { margin-top: 12px; }
+    .cv-item b { display: block; font-family: var(--serif); font-size: 1.05rem; }
+    .cv-item em { color: var(--ink-soft); font-style: normal; font-size: 0.86rem; }
+    .cv-item p { margin-top: 4px; font-size: 0.92rem; color: var(--ink-soft); }
+    .cv-skills { display: grid; gap: 8px; font-size: 0.92rem; }
+    .cv-skills span { color: var(--gold-deep); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .cv-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .hand-cv { font-family: var(--hand); color: var(--coral); font-size: 1.4rem; transform: rotate(-3deg); display: inline-block; margin-bottom: 8px; }
+
+    .exhibit { padding: 36px 36px 32px; }
+    .exhibit::after {
+      content: ""; position: absolute; top: 0; right: 0; width: 46px; height: 46px;
+      background: linear-gradient(135deg, transparent 50%, #f3c9d4 50%);
+      box-shadow: -2px 2px 6px rgba(74,44,56,.08);
+    }
+    .seal {
+      position: absolute; top: -22px; right: 64px; width: 84px; height: 84px; border-radius: 50%;
+      background: radial-gradient(circle at 34% 30%, #f08aa0, var(--wax) 56%, #a83d5a);
+      color: var(--cream); display: grid; place-items: center; text-align: center;
+      font-family: var(--serif); line-height: 1.05;
+      box-shadow: inset 0 -8px 14px rgba(0,0,0,.18), 0 8px 0 #8f3350;
+      transform: rotate(8deg);
+      animation: stamp 0.7s ease-out both;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .seal.stamped { animation: none; transform: rotate(8deg); }
+    .seal.is-bouncing { animation: seal-bounce 0.55s cubic-bezier(.45,1.6,.4,1); }
+    .seal b { font-size: 1.35rem; display: block; }
+    .seal span { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    @keyframes stamp { from { transform: rotate(18deg) scale(1.4); opacity: 0; } to { transform: rotate(8deg) scale(1); opacity: 1; } }
+    @keyframes seal-bounce {
+      0%, 100% { transform: rotate(8deg) translateY(0) scale(1); }
+      28% { transform: rotate(8deg) translateY(-14px) scale(1.1, 0.92); }
+      48% { transform: rotate(8deg) translateY(4px) scale(0.92, 1.1); }
+      68% { transform: rotate(8deg) translateY(-7px) scale(1.05, 0.96); }
+    }
+    .exhibit h3 { font-family: var(--serif); font-size: 1.85rem; font-weight: 600; max-width: 22ch; margin: 8px 0 18px; }
+    .question { font-family: var(--serif); font-style: italic; font-size: 1.2rem; border-left: 3px solid var(--coral); padding-left: 14px; margin-bottom: 22px; max-width: 46rem; }
+    .grid-2 { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; align-items: start; }
+    .block { padding-bottom: 12px; border-bottom: 1px dashed var(--rule); margin-bottom: 14px; }
+    .block strong { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 4px; font-weight: 600; }
+    .tiny-tools { margin-top: 16px; font-size: 0.8rem; color: var(--ink-soft); }
+
+    .reading { background: var(--paper-2); border: 1px solid rgba(74,44,56,.1); padding: 20px; position: relative; }
+    .reading .tag { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+    .score-row { display: flex; gap: 18px; align-items: center; margin: 12px 0 16px; }
+    .ring { width: 92px; height: 92px; position: relative; flex: none; }
+    .ring svg { transform: rotate(-90deg); }
+    .ring strong { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-size: 1.6rem; }
+    .score-copy h4 { font-family: var(--serif); font-size: 1.25rem; }
+    .score-copy p { color: var(--ink-soft); font-size: 0.92rem; }
+    .ratios { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .ratio { background: var(--cream); padding: 10px 8px; text-align: center; border: 1px solid var(--rule); }
+    .ratio b { display: block; font-family: var(--serif); font-size: 1.2rem; }
+    .ratio span { font-size: 0.72rem; color: var(--ink-soft); }
+    .memo { margin-top: 12px; font-size: 0.92rem; }
+    .note { font-family: var(--hand); color: var(--coral); font-size: 1.35rem; position: absolute; right: 14px; top: 18px; transform: rotate(8deg); }
+    .note.warn { top: auto; bottom: 64px; right: 18px; transform: rotate(-6deg); }
+    .hire-reading {
+      background:
+        linear-gradient(180deg, rgba(255,250,244,0.9), var(--paper-2)),
+        repeating-linear-gradient(transparent, transparent 27px, rgba(196, 91, 120, 0.07) 27px, rgba(196, 91, 120, 0.07) 28px);
+      padding: 24px 22px 20px;
+    }
+    .hire-reading h4 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0 0 6px;
+      max-width: 12ch;
+    }
+    .hire-lead { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 18px; }
+    .hire-reading .note {
+      position: absolute;
+      right: 14px;
+      top: 16px;
+      margin: 0;
+      transform: rotate(8deg);
+    }
+    .hire-medals {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      text-align: center;
+      margin: 0 0 16px;
+    }
+    .hire-medal {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 34% 30%, #f08aa0, var(--wax) 56%, #a83d5a);
+      color: var(--cream);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 -6px 12px rgba(0,0,0,.2), 0 6px 0 #8f3350;
+    }
+    .hire-medal.is-bouncing { animation: medal-pop 0.55s cubic-bezier(.34,1.56,.64,1); }
+    .hire-medal svg { width: 26px; height: 26px; }
+    @keyframes medal-pop {
+      0% { transform: translateY(0) scale(1); }
+      28% { transform: translateY(-14px) scale(1.14); }
+      48% { transform: translateY(3px) scale(0.9, 1.1); }
+      68% { transform: translateY(-7px) scale(1.08); }
+      100% { transform: translateY(0) scale(1); }
+    }
+    @keyframes btn-bounce {
+      0% { transform: translateY(0) scale(1); }
+      28% { transform: translateY(-10px) scale(1.08); }
+      48% { transform: translateY(3px) scale(0.96, 1.06); }
+      68% { transform: translateY(-5px) scale(1.04); }
+      100% { transform: translateY(0) scale(1); }
+    }
+    .hire-medals b {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+    .hire-medals em {
+      display: block;
+      font-style: normal;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+    .hire-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .hire-chips a {
+      background: var(--cream);
+      border: 1px solid rgba(196, 91, 120, 0.28);
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 2px 0 rgba(196, 91, 120, 0.12);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .hire-chips a:hover,
+    .hire-chips a:focus-visible {
+      background: #fff;
+      border-color: var(--gold-deep);
+      color: var(--gold-deep);
+    }
+    .hire-chips a.is-bouncing,
+    .exhibit .btn.is-bouncing {
+      animation: btn-bounce 0.5s cubic-bezier(.34,1.56,.64,1);
+    }
+    .hire-medals a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      border-radius: 12px;
+      padding: 4px 2px 6px;
+    }
+    .hire-medals a:hover b { color: var(--gold-deep); }
+    .hire-reading .memo {
+      margin-top: 0;
+      padding-top: 12px;
+      border-top: 1px dashed var(--rule);
+      color: var(--ink-soft);
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .draft { margin-top: 22px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; border: 1px dashed rgba(224,122,148,0.55); padding: 16px 18px; background: rgba(224,122,148,0.08); }
+    .draft-stamp { font-family: var(--serif); font-weight: 700; letter-spacing: 0.18em; border: 3px solid var(--coral); color: var(--coral); padding: 8px 10px; transform: rotate(-12deg); font-size: 0.85rem; }
+    .draft p { font-size: 0.95rem; color: var(--ink-soft); }
+    .draft b { color: var(--ink); }
+
+    .method { background: linear-gradient(180deg, transparent, rgba(224,122,148,0.1) 8%, transparent 30%); }
+    .drawers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .drawer { background: var(--cream); border: 1px solid var(--rule); min-height: 240px; padding: 22px 20px 20px; box-shadow: var(--shadow); position: relative; }
+    .drawer::before { content: ""; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 42px; height: 8px; border-radius: 8px; background: var(--coral); }
+    .drawer h3 { font-family: var(--serif); font-size: 1.35rem; margin: 12px 0 10px; }
+    .drawer ul { padding-left: 16px; color: var(--ink-soft); }
+    .drawer li + li { margin-top: 6px; }
+    .proof { margin-top: 14px; font-family: var(--hand); font-size: 1.25rem; color: var(--coral); }
+
+    #contact { padding-bottom: 80px; }
+    .postcard { background: var(--cream); border: 1px solid rgba(74,44,56,.16); display: grid; grid-template-columns: 1.25fr 0.75fr; box-shadow: var(--shadow); position: relative; overflow: hidden; min-height: 340px; }
+    .postcard::before { content: ""; position: absolute; left: 58%; top: 18px; bottom: 18px; border-left: 2px dotted rgba(74,44,56,.2); }
+    .post-left { padding: 36px 32px; }
+    .post-left h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+    .route { margin: 18px 0 8px; font-family: var(--serif); font-size: 1.2rem; }
+    .route-line { height: 2px; background: repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 14px); position: relative; margin: 14px 0 22px; max-width: 280px; }
+    .route-line i { position: absolute; right: -6px; top: -5px; width: 12px; height: 12px; background: var(--coral); border-radius: 50%; }
+    .channels { display: grid; gap: 8px; }
+    .channels a { font-weight: 500; }
+    .post-right { padding: 28px 24px; display: flex; flex-direction: column; align-items: flex-end; gap: 18px; }
+    .stamp { width: 108px; height: 128px; border: 4px dashed var(--ink); background: linear-gradient(#fff6ee, #f7c9d4); display: grid; place-items: center; text-align: center; transform: rotate(7deg); font-family: var(--serif); }
+    .stamp b { font-size: 0.78rem; letter-spacing: 0.14em; }
+    .stamp em { font-style: italic; font-size: 1.05rem; }
+    .address { text-align: right; font-family: var(--hand); font-size: 1.7rem; line-height: 1.25; margin-top: auto; }
+    footer.end { padding: 8px 0 28px; color: var(--ink-soft); font-size: 0.82rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      .facts, .grid-2, .drawers, .postcard, .cv-top, .cv-grid { grid-template-columns: 1fr; }
+      .facts article + article { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
+      .postcard::before { display: none; }
+      .post-right { align-items: flex-start; }
+      .address, .cv-meta { text-align: left; }
+      .seal { right: 16px; width: 70px; height: 70px; }
+      .ratios { grid-template-columns: 1fr; }
+      .note, .note.warn { position: static; transform: none; display: inline-block; margin-left: 8px; }
+      .cv-sheet { padding: 28px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .seal, .cloud, .hire-medal.is-bouncing,
+      .seal.is-bouncing,
+      .hire-chips a.is-bouncing,
+      .exhibit .btn.is-bouncing { animation: none; }
+    }
+    .pdf-export .cv-actions,
+    .pdf-export .cv-clip { display: none !important; }
+    .pdf-export .cv-sheet {
+      box-shadow: none !important;
+      border: 0 !important;
+      background: #fff !important;
+    }
+    @media print {
+      body::before, header, .hero, #finlens, #method, #hire, #contact, .cv-actions, .cv-clip, .hand-cv, #resume .section-head, .clouds { display: none !important; }
+      body { background: white; }
+      #resume { padding: 0; }
+      .cv-sheet { box-shadow: none; border: 0; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <span class="mini-seal" aria-hidden="true">AM</span>
+        <span><b>Aaliya Memon</b><span>Financial & Data Analyst</span></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#finlens">Analysis</a></li>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#hire">What I bring</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.linkedin.com/in/aaliya-memon-09b183292/">LinkedIn</a></li>
+          <li><a class="resume-link" href="#resume">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero wrap" id="top">
+      <div class="clouds" aria-hidden="true">
+        <span class="cloud c-a"></span>
+        <span class="cloud c-b"></span>
+        <span class="cloud c-c"></span>
+      </div>
+      <p class="kicker">
+        <span>US CMA candidate</span>
+        <span class="dot"></span>
+        <span>Part 1 · January</span>
+        <span class="dot"></span>
+        <span>Ahmedabad</span>
+      </p>
+      <h1>Aaliya Memon</h1>
+      <p class="role">Financial & Data Analyst</p>
+      <p class="lede">Building automated tools to streamline financial statement parsing, health scoring, and business analytics.</p>
+      <p class="aside">I read the messy pages.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ink" href="#resume">Read resume</a>
+        <a class="btn btn-paper" href="https://www.linkedin.com/in/aaliya-memon-09b183292/">LinkedIn</a>
+        <p class="quiet">Quiet link: <a href="https://github.com/aaliyay2k/finlens">working notes on GitHub</a></p>
+      </div>
+      <div class="facts">
+        <article>
+          <small>Open to</small>
+          <p>Analyst roles, on-site or hybrid.</p>
+        </article>
+        <article>
+          <small>Focus</small>
+          <p>Statement analysis, FP&A method, plain-English commentary.</p>
+        </article>
+        <article>
+          <small>Now</small>
+          <p>US CMA Part 1 · financial health scoring from filings.</p>
+        </article>
+      </div>
+    </div>
+
+    <section id="resume">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="label">One-page resume</p>
+            <h2>The paper version</h2>
+          </div>
+        </div>
+        <p class="hand-cv">The bit you actually send.</p>
+        <article class="cv-sheet">
+          <span class="cv-clip" aria-hidden="true"></span>
+          <div class="cv-top">
+            <div>
+              <h3>Aaliya Memon</h3>
+              <p class="sub">Financial &amp; Data Analyst · US CMA Candidate</p>
+            </div>
+            <p class="cv-meta">
+              Ahmedabad · open to Mumbai<br />
+              <a href="mailto:aaliyamemon013@gmail.com">aaliyamemon013@gmail.com</a><br />
+              <a href="tel:+919099114147">+91 90991 14147</a><br />
+              <a href="https://www.linkedin.com/in/aaliya-memon-09b183292/">LinkedIn</a>
+            </p>
+          </div>
+          <p class="cv-summary">Finance-focused B.Com student with AIML training and US CMA Part 1 scheduled for January. Strong in financial statement analysis, ratio interpretation, Excel, and turning filings into plain-English health summaries. Interviewing for analyst roles in financial analysis, FP&amp;A, accounting, and business analytics.</p>
+          <div class="cv-grid">
+            <div>
+              <div class="cv-block">
+                <h4>Work sample</h4>
+                <div class="cv-item">
+                  <b>FinLens — Financial statement analysis</b>
+                  <em>Live analysis · aaliyay2k.github.io/finlens</em>
+                  <p>Turns company statements into health scores, alerts, and investment-style answers in English. Reads text and scanned PDFs, then explains liquidity, investability, year-on-year change, and long vs short horizon from the open file.</p>
+                </div>
+                <div class="cv-item">
+                  <b>FP&amp;A working papers</b>
+                  <em>US CMA Part 1 application · in progress</em>
+                  <p>Budget vs actual variance, rolling forecasts, cost drivers, and an executive note on EBITDA margin.</p>
+                </div>
+              </div>
+              <div class="cv-block">
+                <h4>Education</h4>
+                <div class="cv-item">
+                  <b>Bachelor of Commerce</b>
+                  <em>City C.U. Shah · 2026–2029</em>
+                  <p>Accounting, finance, business management, and financial analysis.</p>
+                </div>
+                <div class="cv-item">
+                  <b>B.Sc. Artificial Intelligence &amp; Machine Learning</b>
+                  <em>Gujarat University · 2025–2026 · CGPA 8.86</em>
+                  <p>Programming, data analytics, and computational problem-solving.</p>
+                </div>
+                <div class="cv-item">
+                  <b>US CMA Candidate — IMA, USA</b>
+                  <em>Part 1: Financial Planning, Performance &amp; Analytics · January</em>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="cv-block">
+                <h4>Skills</h4>
+                <div class="cv-skills">
+                  <p><span>Finance</span><br />Financial statement analysis · Ratio analysis · US CMA Part 1 (planning, budgeting, variance, cost management)</p>
+                  <p><span>Tools</span><br />Microsoft Excel · PowerPoint · Python · Data analysis</p>
+                  <p><span>Working manner</span><br />Analytical thinking · Problem solving · Attention to detail · Clear written commentary</p>
+                </div>
+              </div>
+              <div class="cv-block">
+                <h4>Aim</h4>
+                <div class="cv-item">
+                  <p>On-site / hybrid analyst roles. Financial analysis, FP&amp;A, accounting, and business analytics.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-actions">
+            <button class="btn btn-ink" type="button" id="print-resume">Download PDF</button>
+            <a class="btn btn-paper" href="mailto:aaliyamemon013@gmail.com">Email me</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="finlens">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="label">Exhibit 01</p>
+            <h2>Statement health, in English</h2>
+          </div>
+        </div>
+        <article class="exhibit">
+          <div class="seal" aria-hidden="true"><span>Exhibit</span><b>01</b></div>
+          <p class="label">FinLens — financial statement analysis</p>
+          <h3>From a messy annual report to a usable health view</h3>
+          <p class="question">Can a company’s filings be turned into a clear reading of liquidity, leverage, and year-on-year change — without making the reader do the extraction?</p>
+          <div class="grid-2">
+            <div>
+              <div class="block"><strong>The question</strong>Analysts still spend long hours pulling tables out of multi-page or scanned annual reports before the actual analysis can start.</div>
+              <div class="block"><strong>The work</strong>Isolate statement tables from unstructured filings, then evaluate liquidity, leverage, and YoY change into a plain-English health summary.</div>
+              <div class="block"><strong>How to read it</strong>A first-pass view: what holds, what weakened, and what to watch — before a full model. Not a stock tip, and not a substitute for the filing itself.</div>
+              <p class="tiny-tools">Quiet tools: Python · Excel-style logic · PDF / OCR extraction</p>
+            </div>
+            <aside class="reading">
+              <p class="tag">Illustrative exhibit — sample reading</p>
+              <p class="note">liquidity holds</p>
+              <div class="score-row">
+                <div class="ring" aria-hidden="true">
+                  <svg width="92" height="92" viewBox="0 0 92 92">
+                    <circle cx="46" cy="46" r="38" fill="none" stroke="#f3d5dc" stroke-width="8"/>
+                    <circle cx="46" cy="46" r="38" fill="none" stroke="#c45b78" stroke-width="8" stroke-linecap="round" stroke-dasharray="172 239"/>
+                  </svg>
+                  <strong>72</strong>
+                </div>
+                <div class="score-copy">
+                  <h4>Balanced health</h4>
+                  <p>Growth is present. Profit needs to keep up.</p>
+                </div>
+              </div>
+              <div class="ratios">
+                <div class="ratio"><b>1.8x</b><span>Current ratio</span></div>
+                <div class="ratio"><b>0.6x</b><span>Debt / equity</span></div>
+                <div class="ratio"><b>+12%</b><span>Sales YoY</span></div>
+              </div>
+              <p class="note warn">watch leverage vs growth</p>
+              <p class="memo">Liquidity covers near-term claims. Leverage is still contained. Sales moved ahead; the thing to watch is whether profit is keeping pace — that is usually where the story slips.</p>
+            </aside>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-ink" href="https://aaliyay2k.github.io/finlens/">View the analysis</a>
+            <a class="btn btn-paper" href="https://github.com/aaliyay2k/finlens">Source notes</a>
+          </div>
+        </article>
+        <aside class="draft">
+          <div class="draft-stamp">Draft</div>
+          <p><b>Working papers — FP&A / US CMA.</b> Budget vs actual, rolling forecast, cost drivers, and a short EBITDA-margin memo. On the desk; not a live engagement yet.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="method" id="method">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="label">From the desk</p>
+            <h2>How the work gets done</h2>
+          </div>
+        </div>
+        <div class="drawers">
+          <article class="drawer" id="method-finance">
+            <h3>Financial analysis</h3>
+            <ul>
+              <li>US CMA Part 1: planning, budgeting, variance, cost management</li>
+              <li>Financial statement analysis and ratio interpretation</li>
+              <li>Liquidity, leverage, and year-on-year change</li>
+            </ul>
+            <p class="proof">Proof: FinLens health reading</p>
+          </article>
+          <article class="drawer" id="method-numbers">
+            <h3>Numbers, made usable</h3>
+            <ul>
+              <li>Statement tables out of PDFs and scans</li>
+              <li>Excel models and Python wrangling</li>
+              <li>Plain-English summaries a manager can read</li>
+            </ul>
+            <p class="proof">Proof: extraction → commentary</p>
+          </article>
+          <article class="drawer" id="method-memo">
+            <h3>The last mile</h3>
+            <ul>
+              <li>Executive reporting, not a data dump</li>
+              <li>Clear exhibits and labeled figures</li>
+              <li>Excel, PowerPoint, careful versioning</li>
+            </ul>
+            <p class="proof">Proof: the memo, not the pipeline</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hire">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="label">Closing exhibit</p>
+            <h2>The last reading</h2>
+          </div>
+        </div>
+        <article class="exhibit">
+          <div class="seal" aria-hidden="true"><span>Exhibit</span><b>02</b></div>
+          <p class="label">Qualities and skills</p>
+          <h3>What I bring to the table</h3>
+          <p class="question">The case is the skills on the desk, and the way the work is done — not a long title.</p>
+          <div class="grid-2">
+            <div>
+              <div class="block"><strong>Qualities</strong>Analytical thinking, problem solving, and attention to detail. Commentary a manager can read without doing the extraction themselves.</div>
+              <div class="block"><strong>Skills</strong>Financial statement analysis, ratio analysis, planning and variance from US CMA Part 1, Excel, Python, PowerPoint, and data analysis.</div>
+              <div class="block"><strong>How it shows</strong>FinLens is the live sample: filings in, health score and a plain-English memo out. The method is CMA. The last mile is the writing.</div>
+              <p class="tiny-tools">On the desk: statement analysis · ratios · Excel · Python · clear memos</p>
+            </div>
+            <aside class="reading hire-reading">
+              <p class="tag">Closing exhibit — what I bring</p>
+              <p class="note">on the desk</p>
+              <h4>What I bring to the table</h4>
+              <p class="hire-lead">The skills are present. The manner is careful.</p>
+              <div class="hire-medals">
+                <article>
+                  <a href="#finlens">
+                    <div class="hire-medal" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                        <rect x="5" y="3" width="14" height="18" rx="1.5"/>
+                        <path d="M8 8h8M8 12h8M8 16h5"/>
+                      </svg>
+                    </div>
+                    <b>Statement analysis</b>
+                    <em>Liquidity, leverage, YoY</em>
+                  </a>
+                </article>
+                <article>
+                  <a href="#method-numbers">
+                    <div class="hire-medal" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                        <rect x="3" y="4" width="18" height="16" rx="1.5"/>
+                        <path d="M3 10h18M3 16h18M9 4v16M15 4v16"/>
+                      </svg>
+                    </div>
+                    <b>Excel &amp; Python</b>
+                    <em>Models and PowerPoint</em>
+                  </a>
+                </article>
+                <article>
+                  <a href="#method-memo">
+                    <div class="hire-medal" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 4l6 6-10 10H4v-6L14 4z"/>
+                        <path d="M12 6l6 6"/>
+                      </svg>
+                    </div>
+                    <b>Written commentary</b>
+                    <em>A memo a manager can read</em>
+                  </a>
+                </article>
+              </div>
+              <div class="hire-chips">
+                <a href="#finlens">Statement analysis</a>
+                <a href="#finlens">Ratio reading</a>
+                <a href="#method-numbers">Excel</a>
+                <a href="https://aaliyay2k.github.io/finlens/">Python</a>
+                <a href="#method-memo">PowerPoint</a>
+                <a href="#method-memo">Clear commentary</a>
+              </div>
+              <p class="memo">You get someone who will pull the numbers apart, score them, and write the last mile.</p>
+            </aside>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-ink" href="mailto:aaliyamemon013@gmail.com">Email me</a>
+            <a class="btn btn-paper" href="#resume">Read resume</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <article class="postcard">
+          <div class="post-left">
+            <p class="label">A note for Mumbai</p>
+            <h2>Actively interviewing in Mumbai</h2>
+            <p class="route">On-site / hybrid analyst roles · financial analysis, FP&amp;A, business analytics</p>
+            <div class="route-line" aria-hidden="true"><i></i></div>
+            <div class="channels">
+              <a href="mailto:aaliyamemon013@gmail.com">aaliyamemon013@gmail.com</a>
+              <a href="tel:+919099114147">+91 90991 14147</a>
+              <a href="https://www.linkedin.com/in/aaliya-memon-09b183292/">LinkedIn</a>
+              <a href="#resume">One-page resume</a>
+            </div>
+          </div>
+          <div class="post-right">
+            <div class="stamp" aria-hidden="true">
+              <div>
+                <b>India</b><br /><em>Mumbai</em><br />
+                <span style="font-size:0.7rem;letter-spacing:.12em">ON-SITE</span>
+              </div>
+            </div>
+            <p class="address">Aaliya Memon<br />Mumbai</p>
+          </div>
+        </article>
+        <div class="end wrap" style="width:100%;padding-left:0;padding-right:0;margin-top:18px">
+          <p>From the desk of Aaliya Memon · Financial &amp; Data Analyst · US CMA candidate</p>
+          <p>GitHub stays in the drawer: <a href="https://github.com/aaliyay2k">aaliyay2k</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    document.getElementById("print-resume")?.addEventListener("click", function () {
+      var btn = this;
+      var sheet = document.querySelector(".cv-sheet");
+      if (!sheet) return;
+
+      function makePdf() {
+        var label = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Preparing PDF…";
+        document.body.classList.add("pdf-export");
+
+        var run = function () {
+          html2pdf()
+            .set({
+              margin: [8, 8, 8, 8],
+              filename: "Aaliya-Memon-Resume.pdf",
+              image: { type: "jpeg", quality: 0.98 },
+              html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+              jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+              pagebreak: { mode: ["avoid-all"] }
+            })
+            .from(sheet)
+            .save()
+            .then(function () {
+              document.body.classList.remove("pdf-export");
+              btn.disabled = false;
+              btn.textContent = label;
+            })
+            .catch(function () {
+              document.body.classList.remove("pdf-export");
+              btn.disabled = false;
+              btn.textContent = label;
+            });
+        };
+
+        requestAnimationFrame(function () { requestAnimationFrame(run); });
+      }
+
+      if (typeof html2pdf === "function") {
+        makePdf();
+        return;
+      }
+
+      var script = document.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+      script.onload = makePdf;
+      script.onerror = function () {
+        btn.disabled = false;
+        btn.textContent = "Download PDF";
+      };
+      document.head.appendChild(script);
+    });
+
+    (function () {
+      var layer = document.querySelector(".clouds");
+      if (!layer) return;
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      layer.querySelectorAll(".cloud").forEach(function (cloud) {
+        var drag = null;
+
+        cloud.addEventListener("pointerdown", function (e) {
+          if (e.button) return;
+          e.preventDefault();
+          var parent = layer.getBoundingClientRect();
+          var rect = cloud.getBoundingClientRect();
+          cloud.classList.add("dragging");
+          cloud.style.animation = "none";
+          cloud.style.right = "auto";
+          cloud.style.left = (rect.left - parent.left) + "px";
+          cloud.style.top = (rect.top - parent.top) + "px";
+          drag = { id: e.pointerId, dx: e.clientX - rect.left, dy: e.clientY - rect.top };
+          cloud.setPointerCapture(e.pointerId);
+        });
+
+        cloud.addEventListener("pointermove", function (e) {
+          if (!drag || e.pointerId !== drag.id) return;
+          var parent = layer.getBoundingClientRect();
+          var x = Math.max(-48, Math.min(parent.width - 48, e.clientX - parent.left - drag.dx));
+          var y = Math.max(-24, Math.min(parent.height - 24, e.clientY - parent.top - drag.dy));
+          cloud.style.left = x + "px";
+          cloud.style.top = y + "px";
+        });
+
+        function endDrag(e) {
+          if (!drag || e.pointerId !== drag.id) return;
+          cloud.classList.remove("dragging");
+          if (!reduceMotion) cloud.style.animation = "";
+          drag = null;
+        }
+        cloud.addEventListener("pointerup", endDrag);
+        cloud.addEventListener("pointercancel", endDrag);
+      });
+    })();
+
+    (function () {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      function bounce(el) {
+        if (!el) return;
+        el.classList.remove("is-bouncing");
+        void el.offsetWidth;
+        el.classList.add("is-bouncing");
+      }
+
+      document.querySelectorAll(".seal").forEach(function (el) {
+        el.addEventListener("animationend", function (e) {
+          if (e.animationName === "stamp") el.classList.add("stamped");
+          if (e.animationName === "seal-bounce") el.classList.remove("is-bouncing");
+        });
+        el.addEventListener("pointerdown", function (e) {
+          if (e.button) return;
+          el.classList.add("stamped");
+          bounce(el);
+        });
+      });
+
+      document.querySelectorAll(".hire-medals a").forEach(function (a) {
+        var medal = a.querySelector(".hire-medal");
+        if (!medal) return;
+        medal.addEventListener("animationend", function (e) {
+          if (e.animationName === "medal-pop") medal.classList.remove("is-bouncing");
+        });
+        a.addEventListener("pointerdown", function (e) {
+          if (e.button) return;
+          bounce(medal);
+        });
+      });
+
+      document.querySelectorAll(".hire-chips a, .exhibit .btn").forEach(function (el) {
+        el.addEventListener("animationend", function (e) {
+          if (e.animationName === "btn-bounce") el.classList.remove("is-bouncing");
+        });
+        el.addEventListener("pointerdown", function (e) {
+          if (e.button) return;
+          bounce(el);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
