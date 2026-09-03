@@ -200,6 +200,13 @@
     .tiny-tools { margin-top: 16px; font-size: 0.8rem; color: var(--ink-soft); }
 
     .reading { background: var(--paper-2); border: 1px solid rgba(74,44,56,.1); padding: 20px; position: relative; }
+    .reading-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 2px;
+    }
     .reading .tag { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
     .score-row { display: flex; gap: 18px; align-items: center; margin: 12px 0 16px; }
     .ring { width: 92px; height: 92px; position: relative; flex: none; }
@@ -212,8 +219,18 @@
     .ratio b { display: block; font-family: var(--serif); font-size: 1.2rem; }
     .ratio span { font-size: 0.72rem; color: var(--ink-soft); }
     .memo { margin-top: 12px; font-size: 0.92rem; }
-    .note { font-family: var(--hand); color: var(--coral); font-size: 1.35rem; position: absolute; right: 14px; top: 18px; transform: rotate(8deg); }
-    .note.warn { top: auto; bottom: 64px; right: 18px; transform: rotate(-6deg); }
+    .note { font-family: var(--hand); color: var(--coral); font-size: 1.35rem; }
+    .reading .note {
+      position: static;
+      display: block;
+      text-align: right;
+      margin: 0 0 6px;
+      transform: rotate(6deg);
+    }
+    .reading .note.warn {
+      margin: 8px 0 0;
+      transform: rotate(-4deg);
+    }
     .hire-reading {
       background:
         linear-gradient(180deg, rgba(255,250,244,0.9), var(--paper-2)),
@@ -368,7 +385,8 @@
       .address, .cv-meta { text-align: left; }
       .seal { right: 16px; width: 70px; height: 70px; }
       .ratios { grid-template-columns: 1fr; }
-      .note, .note.warn { position: static; transform: none; display: inline-block; margin-left: 8px; }
+      .note { position: static; transform: none; display: inline-block; margin-left: 8px; }
+      .note.warn { display: block; text-align: right; margin: 8px 0 0; transform: rotate(-4deg); }
       .cv-sheet { padding: 28px 20px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -556,8 +574,10 @@
               <p class="tiny-tools">Quiet tools: Python · Excel-style logic · PDF / OCR extraction</p>
             </div>
             <aside class="reading">
-              <p class="tag">Illustrative exhibit — sample reading</p>
-              <p class="note">liquidity holds</p>
+              <div class="reading-head">
+                <p class="tag">Illustrative exhibit — sample reading</p>
+                <p class="note">liquidity holds</p>
+              </div>
               <div class="score-row">
                 <div class="ring" aria-hidden="true">
                   <svg width="92" height="92" viewBox="0 0 92 92">
@@ -576,8 +596,8 @@
                 <div class="ratio"><b>0.6x</b><span>Debt / equity</span></div>
                 <div class="ratio"><b>+12%</b><span>Sales YoY</span></div>
               </div>
-              <p class="note warn">watch leverage vs growth</p>
               <p class="memo">Liquidity covers near-term claims. Leverage is still contained. Sales moved ahead; the thing to watch is whether profit is keeping pace — that is usually where the story slips.</p>
+              <p class="note warn">watch leverage vs growth</p>
             </aside>
           </div>
           <div class="cta-row">
