@@ -158,6 +158,20 @@
     .cv-item + .cv-item { margin-top: 12px; }
     .cv-item b { display: block; font-family: var(--serif); font-size: 1.05rem; }
     .cv-item em { color: var(--ink-soft); font-style: normal; font-size: 0.86rem; }
+    .cv-item b a, .cv-item em a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--coral);
+    }
+    .cv-item b a:hover, .cv-item em a:hover { color: var(--gold-deep); }
+    a[href^="mailto:"]:not(.btn) { cursor: copy; }
+    a[href^="mailto:"]:not(.btn).is-copied { color: var(--gold-deep); }
+    a[href^="mailto:"]:not(.btn).is-copied::after {
+      content: "  copied";
+      font-family: var(--hand);
+      font-size: 1.05em;
+      color: var(--coral);
+    }
     .cv-item p { margin-top: 4px; font-size: 0.92rem; color: var(--ink-soft); }
     .cv-skills { display: grid; gap: 8px; font-size: 0.92rem; }
     .cv-skills span { color: var(--gold-deep); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -493,8 +507,8 @@
               <div class="cv-block">
                 <h4>Work sample</h4>
                 <div class="cv-item">
-                  <b>FinLens — Financial statement analysis</b>
-                  <em>Live analysis · aaliyay2k.github.io/finlens</em>
+                  <b><a href="https://aaliyay2k.github.io/finlens/" target="_blank" rel="noopener">FinLens — Financial statement analysis</a></b>
+                  <em>Live analysis · <a href="https://aaliyay2k.github.io/finlens/" target="_blank" rel="noopener">aaliyay2k.github.io/finlens</a></em>
                   <p>Turns company statements into health scores, alerts, and investment-style answers in English. Reads text and scanned PDFs, then explains liquidity, investability, year-on-year change, and long vs short horizon from the open file.</p>
                 </div>
                 <div class="cv-item">
@@ -540,6 +554,7 @@
           </div>
           <div class="cv-actions">
             <a class="btn btn-ink" href="Aaliya-Memon-Resume.pdf" download="Aaliya-Memon-Resume.pdf">Download PDF</a>
+            <a class="btn btn-paper" href="https://aaliyay2k.github.io/finlens/" target="_blank" rel="noopener">Open FinLens</a>
             <a class="btn btn-paper" href="mailto:aaliyamemon013@gmail.com">Email me</a>
           </div>
         </article>
@@ -843,6 +858,22 @@
         el.addEventListener("pointerdown", function (e) {
           if (e.button) return;
           bounce(el);
+        });
+      });
+    })();
+
+    (function () {
+      document.querySelectorAll('a[href^="mailto:"]:not(.btn)').forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          var text = (el.getAttribute("href") || "").replace(/^mailto:/i, "").split("?")[0];
+          if (!text || !navigator.clipboard || !navigator.clipboard.writeText) return;
+          e.preventDefault();
+          navigator.clipboard.writeText(text).then(function () {
+            el.classList.add("is-copied");
+            window.setTimeout(function () { el.classList.remove("is-copied"); }, 1600);
+          }).catch(function () {
+            window.location.href = el.getAttribute("href");
+          });
         });
       });
     })();
