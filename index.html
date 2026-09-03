@@ -396,13 +396,6 @@
       .hire-chips a.is-bouncing,
       .exhibit .btn.is-bouncing { animation: none; }
     }
-    .pdf-export .cv-actions,
-    .pdf-export .cv-clip { display: none !important; }
-    .pdf-export .cv-sheet {
-      box-shadow: none !important;
-      border: 0 !important;
-      background: #fff !important;
-    }
     @media print {
       body::before, header, .hero, #finlens, #method, #hire, #contact, .cv-actions, .cv-clip, .hand-cv, #resume .section-head, .clouds { display: none !important; }
       body { background: white; }
@@ -546,7 +539,7 @@
             </div>
           </div>
           <div class="cv-actions">
-            <button class="btn btn-ink" type="button" id="print-resume">Download PDF</button>
+            <a class="btn btn-ink" href="Aaliya-Memon-Resume.pdf" download="Aaliya-Memon-Resume.pdf">Download PDF</a>
             <a class="btn btn-paper" href="mailto:aaliyamemon013@gmail.com">Email me</a>
           </div>
         </article>
@@ -766,61 +759,7 @@
       </div>
     </section>
   </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
-    document.getElementById("print-resume")?.addEventListener("click", function () {
-      var btn = this;
-      var sheet = document.querySelector(".cv-sheet");
-      if (!sheet) return;
-
-      function makePdf() {
-        var label = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = "Preparing PDF…";
-        document.body.classList.add("pdf-export");
-
-        var run = function () {
-          html2pdf()
-            .set({
-              margin: [8, 8, 8, 8],
-              filename: "Aaliya-Memon-Resume.pdf",
-              image: { type: "jpeg", quality: 0.98 },
-              html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
-              jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-              pagebreak: { mode: ["avoid-all"] }
-            })
-            .from(sheet)
-            .save()
-            .then(function () {
-              document.body.classList.remove("pdf-export");
-              btn.disabled = false;
-              btn.textContent = label;
-            })
-            .catch(function () {
-              document.body.classList.remove("pdf-export");
-              btn.disabled = false;
-              btn.textContent = label;
-            });
-        };
-
-        requestAnimationFrame(function () { requestAnimationFrame(run); });
-      }
-
-      if (typeof html2pdf === "function") {
-        makePdf();
-        return;
-      }
-
-      var script = document.createElement("script");
-      script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
-      script.onload = makePdf;
-      script.onerror = function () {
-        btn.disabled = false;
-        btn.textContent = "Download PDF";
-      };
-      document.head.appendChild(script);
-    });
-
     (function () {
       var layer = document.querySelector(".clouds");
       if (!layer) return;
